@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class JumpController {
+	//将安全目录jsp上传到框架
 	@RequestMapping("/index")
 	public String index(){
 	return "index";
