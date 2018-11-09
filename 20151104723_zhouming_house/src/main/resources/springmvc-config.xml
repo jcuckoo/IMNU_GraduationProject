@@ -16,6 +16,12 @@
 	<mvc:resources location="/images/" mapping="/images/**"></mvc:resources><!-- 产生images文件的映射，方便调用图片 -->
 	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
 	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+	
+	
+	<mvc:resources location="/style/images/" mapping="/style/images/**"></mvc:resources>
+	<mvc:resources location="/style/js/" mapping="/style/js/**"></mvc:resources>
+	<mvc:resources location="/style/css/" mapping="/style/css/**"></mvc:resources>
+	
 		<!-- 定义视图解析器，设置视图的前缀和后缀 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
