@@ -63,11 +63,11 @@
 						</div>
 						<div class="group">
 							<label for="pass" class="label">密码</label>
-							<input id="passs" type="password" class="input" data-type="password">
+							<input id="pass1" type="password" class="input" data-type="password">
 						</div>
 						<div class="group">
 							<label for="pass" class="label">重复密码</label>
-							<input id="passs" type="password" class="input" data-type="password">
+							<input id="pass2" type="password" class="input" data-type="password">
 						</div>
 						<div class="group">
 							<label for="pass" class="label">手机号</label>
@@ -91,28 +91,6 @@
 		</div>
 	</div>	
 	<script src="js/jigsaw.js"></script>
-<script>
-	var flag=false;	
-	function sub(){
-		var name=document.getElementById('username').value;
-		var pass=document.getElementById('password').value;
-		var cname="admin";
-		var cpass="123";
-		if(name==cname && pass==cpass && flag==true){
-		alert("登录成功!")
-			//window.location.href="#";
-		}else{
-			if(flag==false){
-				alert("验证失败!")
-				return;
-			}
-			alert("用户名或密码错误!")
-		}
-			}
- 	 jigsaw.init(document.getElementById('captcha'), function () {
-  	 flag=true;
-    document.getElementById('msg').innerHTML = '登录成功！'  
-  })
-</script>
+
 </body>
 </html>
