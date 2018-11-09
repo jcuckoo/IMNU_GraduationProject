@@ -56,13 +56,5 @@ public class JumpController {
 	return "orderList";
 	}
 	
-	@RequestMapping("/updateCuisine")
-	public String updateCuisine(){
-	return "updateCuisine";
-	}
 	
-	@RequestMapping("/updateFood")
-	public String updateFood(){
-	return "updateFood";
-	}
 }
