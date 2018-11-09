@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>欢迎来到 食品追溯系统<sup>V2018</sup></h1>
-<h6>您当前的位置：用户登录注册界面</h6>
+
 
 <div class="login" style="margin-top:50px;">
     
