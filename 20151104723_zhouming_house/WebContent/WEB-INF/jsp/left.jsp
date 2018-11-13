@@ -93,7 +93,7 @@ body {
 			</div>
             <ul class="MenuLevel2">
             	<li class="level2 level2Style">
-                    <a target="right" href="yonghuList.html">用户管理</a>
+                    <a target="right" href="User">用户管理</a><!-- yonghuList.html -->
 				</li>
                 <li class="level2 level2Style">
                 	<a target="right" href="housetypeList.html">房屋类型管理</a>

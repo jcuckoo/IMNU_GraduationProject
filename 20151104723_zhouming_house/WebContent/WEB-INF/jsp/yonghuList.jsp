@@ -48,10 +48,27 @@
 			<tr align="center" valign="middle" id="TableTitle">
 				<td>编号</td>
 				<td>姓名</td>
-				<td>地址</td>
 				<td>电话</td>
 				<td>操作</td>
 			</tr>
+			
+			<c:if test="${userInfoList.size()>0}">
+
+				<c:forEach items="${userInfoList }" var="userSingle">
+
+					<tr align="center">
+						<td>${userSingle.user_id }</td>
+						<td>${userSingle.user_name }</td>
+						<td>${userSingle.user_phone }</td>
+						<td><a href="UpdateUserInfo?id=${userSingle.user_id }
+									&name=${userSingle.user_name }
+									&phone=${userSingle.user_phone }">修改</a> 
+						<a href="DeleteUser?id=${userSingle.user_id }">删除</a></td>
+					</tr>
+				</c:forEach>
+
+
+			</c:if>
 
 			
 		</table>
