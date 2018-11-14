@@ -5,7 +5,7 @@ import cn.com.lhd.core.IPage;
 /**
  * 简单分页
  */
-public class fenye implements IPage {
+public class SimplePage implements IPage {
 
 	protected Integer pageNo;// 页码
 
@@ -13,11 +13,11 @@ public class fenye implements IPage {
 
 	protected int totalRecord;// 总记录行数
 
-	public fenye() {
+	public SimplePage() {
 		super();
 	}
 
-	public fenye(int pageNo, int pageSize) {
+	public SimplePage(int pageNo, int pageSize) {
 		this();
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;

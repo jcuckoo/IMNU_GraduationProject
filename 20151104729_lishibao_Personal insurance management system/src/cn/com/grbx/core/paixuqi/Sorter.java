@@ -5,22 +5,22 @@ import cn.com.lhd.core.ISort;
 /**
  * 排序器
  */
-public class paixu implements ISort {
+public class Sorter implements ISort {
 
 	private String field;
 
 	private boolean asc = true;
 
-	public paixu() {
+	public Sorter() {
 		super();
 	}
 
-	public paixu(String field) {
+	public Sorter(String field) {
 		this();
 		this.field = field;
 	}
 
-	public paixu(String field, boolean asc) {
+	public Sorter(String field, boolean asc) {
 		this(field);
 		this.asc = asc;
 	}
