@@ -1,11 +1,11 @@
-package cn.com.lhd.core.page;
+package cn.com.grbx.core.fenyeqi;
 
 import cn.com.lhd.core.IPage;
 
 /**
  * 简单分页
  */
-public class SimplePage implements IPage {
+public class fenye implements IPage {
 
 	protected Integer pageNo;// 页码
 
@@ -13,11 +13,11 @@ public class SimplePage implements IPage {
 
 	protected int totalRecord;// 总记录行数
 
-	public SimplePage() {
+	public fenye() {
 		super();
 	}
 
-	public SimplePage(int pageNo, int pageSize) {
+	public fenye(int pageNo, int pageSize) {
 		this();
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;

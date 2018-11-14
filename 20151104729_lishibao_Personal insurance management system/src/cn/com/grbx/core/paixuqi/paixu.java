@@ -1,26 +1,26 @@
-package cn.com.lhd.core.sort;
+package cn.com.grbx.core.paixuqi;
 
 import cn.com.lhd.core.ISort;
 
 /**
  * 排序器
  */
-public class Sorter implements ISort {
+public class paixu implements ISort {
 
 	private String field;
 
 	private boolean asc = true;
 
-	public Sorter() {
+	public paixu() {
 		super();
 	}
 
-	public Sorter(String field) {
+	public paixu(String field) {
 		this();
 		this.field = field;
 	}
 
-	public Sorter(String field, boolean asc) {
+	public paixu(String field, boolean asc) {
 		this(field);
 		this.asc = asc;
 	}
