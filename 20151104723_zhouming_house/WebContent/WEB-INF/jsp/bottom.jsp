@@ -51,7 +51,7 @@
 <div id="StatusBar">
 	<!-- 链接 -->
     <div id="StatusBar_Links">
-		<a href="http://gz.itcast.cn" target="_blank">广州传智博客</a>，最专业的Java培训！
+		<a href="http://gz.itcast.cn" target="_blank">房屋租赁系统</a>，最专业的租赁系统！
     </div>
 	<!-- 右侧功能按钮 -->
     <div id="StatusBar_Right">

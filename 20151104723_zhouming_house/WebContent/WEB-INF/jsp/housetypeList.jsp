@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -49,7 +50,24 @@
 			</thead>
 			<!--显示数据列表 -->
 			<tbody id="TableData">
-				
+				<c:if test="${hclassList.size()>0}">
+
+				<c:forEach items="${hclassList }" var="hClassSingle">
+
+					<tr align="center">
+						<td>${hClassSingle.class_id }</td>
+						<td>${hClassSingle.class_name }</td>
+						
+						<td><a href="UpdateMenuClassInfo?id=${hClassSingle.class_id }
+									&name=${hClassSingle.class_name }">修改</a>
+						<a href="DeleteMenuClass?id=${hClassSingle.class_id }">删除</a></td>
+
+
+					</tr>
+				</c:forEach>
+
+
+			</c:if>
 					
 				
 			</tbody>
