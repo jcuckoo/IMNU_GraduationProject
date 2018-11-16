@@ -10,7 +10,6 @@
 </head>
 <body>
 <h1>欢迎来到 食品追溯系统<sup>V2018</sup></h1>
-//123
 
 <div class="login" style="margin-top:50px;">
     
