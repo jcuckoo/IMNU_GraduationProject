@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="true"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="cn.com.lhd.**.controller"/>
+
+    <!-- 注册WEB消息转化器 -->
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
+                <property name="processExternalEntities" value="true"/>
+            </bean>
+            <!--引用JSON转化器-->
+            <ref bean="fastJsonHttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    
+    <mvc:default-servlet-handler/>
+	<!--注:static为我的静态资源文件夹-->
+	<mvc:resources mapping="/static/**" location="/static/" />
+	
+    <!--JSON http消息转化器-->
+    <bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+        <property name="fastJsonConfig" ref="fastJsonConfig"/>
+    </bean>
+
+    <bean id="fastJsonConfig" class="com.alibaba.fastjson.support.config.FastJsonConfig">
+        <description>阿里巴巴JSON工具配置,修复cn.com.lhd.dccdcp.common.type.json.FastJsonConfig的bug</description>
+        <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+        <property name="serializerFeatures">
+            <array>
+                <value>QuoteFieldNames</value>
+                <value>SkipTransientField</value>
+                <value>SortField</value>
+                <value>IgnoreNonFieldGetter</value>
+                <value>PrettyFormat</value>
+                <value>DisableCircularReferenceDetect</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <!--入参转化器：前端参数前置处理-->
+        <property name="converters">
+            <set>
+                <bean class="cn.com.lhd.core.converter.StringConverter"/>
+                <bean class="cn.com.lhd.core.converter.DateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+        <description>文件请求解析器，上传文件使用</description>
+    </bean>
+
+    <!--试图解析器；开发期间cache-views设置为false，生产期间请设置为true提高性能-->
+    <mvc:view-resolvers>
+        <mvc:jsp prefix="/pages/" suffix=".jsp" cache-views="false"/>
+    </mvc:view-resolvers>
+
+    <bean id="handlerExceptionResolver" class="cn.com.lhd.core.handler.WebExceptionHandler">
+        <description>异常解析器，系统出异常将会被拦截处理</description>
+        <property name="fastJsonConfig" ref="fastJsonConfig"/>
+    </bean>
+
+    <!--支持跨域设置-->
+    <mvc:cors>
+        <mvc:mapping path="/**" allowed-origins="*" allow-credentials="true"/>
+    </mvc:cors>
+
+</beans>
