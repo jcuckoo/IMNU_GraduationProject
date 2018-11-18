@@ -1,10 +1,18 @@
 package film.beans;
 
 public class Userinfo {
+	 
+	     private int id;
          private String username;
          private String userpass;
-         private String usernumber;
-         private String usermoney;
+         private int usernumber;
+         private int usermoney;
+		public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
 		public String getUsername() {
 			return username;
 		}
@@ -17,17 +25,18 @@ public class Userinfo {
 		public void setUserpass(String userpass) {
 			this.userpass = userpass;
 		}
-		public String getUsernumber() {
+		public int getUsernumber() {
 			return usernumber;
 		}
-		public void setUsernumber(String usernumber) {
+		public void setUsernumber(int usernumber) {
 			this.usernumber = usernumber;
 		}
-		public String getUsermoney() {
+		public int getUsermoney() {
 			return usermoney;
 		}
-		public void setUsermoney(String usermoney) {
+		public void setUsermoney(int usermoney) {
 			this.usermoney = usermoney;
 		}
+		
          
 }
