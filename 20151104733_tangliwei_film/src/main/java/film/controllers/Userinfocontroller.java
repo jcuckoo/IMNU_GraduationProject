@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import film.beans.Userinfo;
 import film.dao.LoginDao;
+import film.dao.RegisterDao;
 
 @Controller
 public class Userinfocontroller {
@@ -34,4 +35,42 @@ public class Userinfocontroller {
 		  return modelAndView;  
 		     
 		 }
+	@RequestMapping("/register")  
+	 public ModelAndView register(String username,String userpass,Integer usernumber,Integer usermoney) { 
+		Userinfo user = new Userinfo();
+		user.setUsername(username);
+		user.setUserpass(userpass);
+		user.setUsernumber(usernumber);
+		user.setUsermoney(usermoney);
+		RegisterDao registerDao = new RegisterDao();
+	  boolean flag = registerDao.register(user);
+	  String me = "";
+	  String url ="";
+	  if(flag){
+		  me="注册成功！";
+		  url ="registerSuccess";
+	  }else{
+		  me="该用户名已经存在，请重新输入";
+		  url ="registerError";
+	  }
+	  
+	  ModelAndView modelAndView = new ModelAndView();  
+	  modelAndView.addObject("message", me);  
+	  modelAndView.setViewName(url);  
+	  return modelAndView;   
+	     
+	 }
+	@RequestMapping("/logout")  
+	 public ModelAndView logout() { 
+		
+	  String me = "";
+	  String url ="";
+	  me="注销成功！";
+	  url="index";
+	  ModelAndView modelAndView = new ModelAndView();  
+	  modelAndView.addObject("message", me);  
+	  modelAndView.setViewName(url);  
+	  return modelAndView;   
+	     
+	 }
 }
