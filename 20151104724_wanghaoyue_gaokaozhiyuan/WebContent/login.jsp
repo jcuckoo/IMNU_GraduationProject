@@ -79,7 +79,7 @@
 					<div>
 						<input type="submit" onclick="return regist()" value="立即注册" class="submit">
 					</div>
-					<div class="clearFloat"></div>
+					  <div class="clearFloat"></div>
 				</div>
 			</div>
 		</form>
