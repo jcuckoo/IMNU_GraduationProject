@@ -26,7 +26,7 @@ public class Userinfocontroller {
 			  modelAndView.addObject("username", username);  
 			  url ="index";
 		  }else{
-			  me="用户名和密码有错误！";
+			  me="用户名或密码有错误！";
 			  url ="login";
 		  }
 		  
@@ -48,10 +48,10 @@ public class Userinfocontroller {
 	  String url ="";
 	  if(flag){
 		  me="注册成功！";
-		  url ="registerSuccess";
+		  url ="login";
 	  }else{
 		  me="该用户名已经存在，请重新输入";
-		  url ="registerError";
+		  url ="register";
 	  }
 	  
 	  ModelAndView modelAndView = new ModelAndView();  

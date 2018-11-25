@@ -11,7 +11,7 @@ ${message}${username}
 <h1>111111111</h1>
 <a href="login.jsp">登录</a>
 <form action="register" method="post">
-<input type="submit" value="注册"/>
+<a href="register.jsp">注册</a>
 </form>
 <br>
 <form action="logout" method="post">
