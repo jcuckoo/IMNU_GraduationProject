@@ -21,7 +21,7 @@ public class RegisterDao {
 
 			rs = s.executeQuery("select * from userinfo where username ='"+user.getUsername()+"'");
 			if(!rs.next()){
-				s.execute("insert into userinfo(username,userpass,userage,useraddress) values('"+user.getUsername()+"','"+user.getUserpass()+"','"+user.getUsernumber()+"','"+user.getUsermoney()+"')");
+				s.execute("insert into userinfo(username,userpass,usernumber,usermoney) values('"+user.getUsername()+"','"+user.getUserpass()+"','"+user.getUsernumber()+"','"+user.getUsermoney()+"')");
 				flag =true;
 			}
 		} catch (SQLException e) {
