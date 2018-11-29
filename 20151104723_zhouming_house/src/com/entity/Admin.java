@@ -1,9 +1,9 @@
 package com.entity;
 
-
+import com.util.VeDate;
 
 public class Admin {
-	private String adminid ;
+	private String adminid = "A" + VeDate.getStringId();//添加时间序号
 	private String username;
 	private String password;
 	private String realname;
