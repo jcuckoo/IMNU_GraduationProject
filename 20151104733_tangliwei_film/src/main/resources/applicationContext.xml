@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 引入db.propreties文件 （实际上就是配置数据库相关的信息，此类信息可以交给不同的类处理 这里我们交给dbcp2.BasicDataSource）-->
+	<context:property-placeholder location="classpath:db.properties"/>
+	<!-- 配置数据库数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="maxTotal" value="${jdbc.maxTotal}"></property>
+		<property name="maxIdle" value="${jdbc.maxIdle}"></property>
+		<property name="initialSize" value="${jdbc.initialSize}"></property>
+	</bean>
+	<!-- 配置事务管理器 (这里仅仅是配置能够进行事务控制的类)-->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!--开启事务注解  （此处让上面声明的进行事务控制的类 开始工作 ）-->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 配置mybatis的sqlsessionfactory工厂 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 指定Mybatis核心配置文件位置 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+	<!-- 配置mapper扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.qst.dao"></property>
+	</bean> 
+	<!-- 扫描Service -->
+	<context:component-scan base-package="com.qst.service"></context:component-scan>
+	
+	
+		
+
+
+</beans>
