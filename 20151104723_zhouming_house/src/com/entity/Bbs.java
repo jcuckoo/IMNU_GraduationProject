@@ -1,9 +1,9 @@
 package com.entity;
 
-
+import com.util.VeDate;
 
 public class Bbs {
-	private String bbsid ;
+	private String bbsid = "B" + VeDate.getStringId();
 	private String usersid;
 	private String title;
 	private String contents;
