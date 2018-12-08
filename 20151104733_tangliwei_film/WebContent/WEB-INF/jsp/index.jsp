@@ -7,7 +7,7 @@
 <title>基于JavaWeb的滨海影视网站的设计与实现</title>
 </head>
 <body>
-${message}${username}
+
 <h1>111111111</h1>
 <a href="login.jsp">登录</a>
 <form action="register" method="post">

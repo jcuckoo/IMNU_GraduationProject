@@ -10,8 +10,8 @@
     ${message}
     <form action="login" method="post">
     
-    用户名<input type="text" name="username" id="username"/>
-    密码<input type="password" name="userpass" id="userpass"/>
+    用户名<input type="text" name="user_name" id="user_name"/>
+    密码<input type="password" name="user_pass" id="user_pass"/>
     <input type="submit" value="提交"/>
     </form>
 </body>
