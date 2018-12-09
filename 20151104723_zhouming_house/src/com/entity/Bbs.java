@@ -1,6 +1,6 @@
 package com.entity;
 
-
+import com.util.VeDate;
 
 public class Bbs {
 	private String bbsid ;
