@@ -39,11 +39,4 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>毕业设计材料/王浩月高考辅助选校系统的分析与设计.docx</name>
-			<type>1</type>
-			<location>C:/Users/王浩月/Desktop/王浩月高考辅助选校系统的分析与设计.docx</location>
-		</link>
-	</linkedResources>
 </projectDescription>
