@@ -11,7 +11,7 @@
 <link href="${ctx}/static/css/style.css?${random}" rel="stylesheet" />
 </head>
 <body>
-	<!-- 导航栏 -->
+	<!-- 导航 -->
 	<jsp:include page="/pages/menu_top.jsp"/>
 	
 	<!-- 登录 -->
