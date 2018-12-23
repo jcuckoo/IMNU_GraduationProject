@@ -1,0 +1,4 @@
+// 首页中间L广告
+document.write("<div class='right_250x370' style='width:250px; height: 520px; margin-bottom: 15px;overflow: hidden; '><a href='http://dps.sj.yxdown.com/tls0e7502b3/2808/' target='_blank' style='width:250px; height:520px; display:block;'><img src='http://static.yxdown.com/cjimages/index_250x520.jpg'></a></div>");
+
+/*document.write("<div class='right_250x370' style='width:250px; height: 520px; margin-bottom: 15px;overflow: hidden; '><div style='position:relative;'><a href='http://dps.sj.yxdown.com/tls71bd51b2/3685/' target='_blank' style='width:250px;height:520px;display:block;position:absolute;z-index:99;background:#000;opacity:0;filter:alpha(opacity=0);'></a><b><embed src='http://static.yxdown.com/cjimages/swf/index_250x520_2.swf' width='250' height='520' wmode='transparent' quality='high' type='application/x-shockwave-flash' title='Adobe Flash Player'></b></div></div>");*/

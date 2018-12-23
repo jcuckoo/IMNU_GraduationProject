@@ -1,0 +1,39 @@
+/*CSS Reset*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,form,label,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;font-style:normal;text-decoration:none; font-weight: normal;}
+ol,ul{list-style:none;}
+dt,dd { margin: 0; padding: 0; }
+ins{text-decoration:none;}
+del{text-decoration:line-through;}
+input{font-size:12px; outline:none;}
+body{_background-image: url(about:blank);_background-attachment: fixed; font-family:"Microsoft YaHei";font-size:12px;line-height:1.6;color:#5a5a5a; background:#fff;}
+html{ overflow-x:hidden;}
+select,input,button,textarea{ font-family:"Microsoft YaHei"; background-color:#fff; color:#333;}
+a:link,a:visited,a:hover,a:active{text-decoration:none;}
+a{ font-family:"Microsoft YaHei"; cursor:pointer; font-weight: normal;}
+img{ vertical-align:bottom;}
+.fl{ float:left;}
+.fr{ float:right;}
+.f12{ font-size:12px;}
+.f14{ font-size:14px;}
+.f15{ font-size:15px;}
+.f16{ font-size:16px;}
+.f20{ font-size:20px;}
+.hide { display:none; height:0; line-height: 0;}
+.hidden { overflow:hidden; _zoom:1; }
+.c { clear:both; *zoom:1; *height:1px; _height:1px;}
+.clearfix:after { content: "."; display: block; height: 0; font-size: 0; visibility: hidden; clear: both; }
+.clearfix { *zoom: 1; }
+.cf1b515{ color:#f1b515;}
+.cc81604{ color:#c81604;}
+.cea4d0a{ color:#ea4d0a;}
+.w1000{ width:1000px; margin:0 auto;}
+.mt25{ margin-top: 62px;}
+.mt20{ margin-top:20px;}
+.pt25{ padding-top:25px;}
+.relative { position: relative; zoom: 1; }
+.absolute { position: absolute; zoom: 1; }
+.tr-c{ text-align:center;}
+.nowrap{ max-width:100%; _width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.icon{ display:inline-block; background:url(http://static.yxdown.com/pc/index/images/icon.png) no-repeat; vertical-align: middle; overflow:hidden; *display:inline; *zoom:1;}
+.wapper{ width:1000px; margin:0 auto;}
+/* header */
