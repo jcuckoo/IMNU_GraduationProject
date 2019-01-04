@@ -7,13 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="LoginController" method="post">
+<form action="RegisterController" method="post">
 <input type="text" name="username"/>
 <input type="password" name="userpass"/>
-<input type="submit" value="登录"/>
-</form>
-<form action="">
-
+<input type="text" name="usernumber"/>
+<input type="submit" value="提交"/>
 </form>
 </body>
 </html>
