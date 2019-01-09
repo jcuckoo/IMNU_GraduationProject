@@ -18,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
 
+import cn.com.cyxt.web.controller.CommonController;
+import cn.com.cyxt.web.entity.Role;
+import cn.com.cyxt.web.service.IUserService;
 import cn.com.lhd.core.IPage;
 import cn.com.lhd.core.ISort;
 import cn.com.lhd.core.JsonViewData;
@@ -25,10 +28,7 @@ import cn.com.lhd.core.ResultCode;
 import cn.com.lhd.core.page.SimplePage;
 import cn.com.lhd.core.sort.Sorter;
 import cn.com.lhd.core.utils.CryptographyUtil;
-import cn.com.lhd.web.controller.CommonController;
-import cn.com.lhd.web.entity.Role;
-import cn.com.lhd.web.entity.User;
-import cn.com.lhd.web.service.IUserService;
+
 
 /**
  *
