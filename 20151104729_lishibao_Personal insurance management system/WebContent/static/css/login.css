@@ -1,0 +1,77 @@
+.navbar-banner{
+    background: url("images/loginpage-bg.png");
+    background-size: cover;
+    backgtound-repeat: no-repeat;
+}
+.banner-container {
+    background: none;
+    background-size: 100% 100%;
+    min-height: 612px;
+    padding-top: 120px;
+}
+.introduce-unit {
+    padding: 35px;
+    text-align: center;
+}
+.introduce-unit .introduce-img {
+    height: 180px;
+}
+.introduce-unit .introduce-span {
+    font-size: 16px;
+    color: #6a849d;
+}
+.banner-container .banner-title{
+	color: #fff;
+}
+.banner-container .banner-tag{
+	color: #fff;
+	font-size: 20px;
+	margin-left: 120px;
+	margin-top: 25px;
+}
+.banner-container form .form-group {
+    margin-bottom: 20px;
+}
+.banner-container form .form-group .control-label{
+	width: 80%;
+    margin: auto;
+    color: #fff;
+    display: block;
+    margin-bottom: 2px;
+}
+.banner-container form .form-group .form-control {
+    width: 80%;
+    border-radius: 5px;
+    margin: auto;
+}
+.banner-container form .form-group p {
+    width: 80%;
+    margin: auto;
+}
+.banner-container #login-submit{
+	width: 80%;
+    background: #11aa8c;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 8px;
+    border-radius: 5px;
+    height: 40px;
+    border: none;
+}
+#validateCode {
+	width: 220px;
+}
+#imageCode {
+	width: 80px;
+	height: 34px;
+	margin-top: -35px;
+	border-radius: 2px;
+	margin-right: 135px;
+}
+#imageCode:hover {
+	cursor: pointer;
+}
+.banner-container #register-btn{
+	width: 80%;
+	margin: auto;
+}
