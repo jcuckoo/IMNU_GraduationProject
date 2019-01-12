@@ -25,7 +25,7 @@ public class RootLoginController {
 	@Autowired
 	private RootService rootService;
 	
-	@RequestMapping(value="/HoutaiLoginController",method=RequestMethod.POST)
+	@RequestMapping(value="/RootController",method=RequestMethod.POST)
 	public String Login(Root rootInfo, HttpServletResponse response, HttpSession session, HttpServletRequest request) {
 		response.setCharacterEncoding("utf-8");
 		String msg = "adminlogin";
