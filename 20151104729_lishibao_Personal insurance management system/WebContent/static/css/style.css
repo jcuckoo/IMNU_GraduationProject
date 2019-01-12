@@ -1,0 +1,275 @@
+*{
+	margin: 0;
+    padding: 0;
+    font-family: "microsoft yahei";
+}
+.container .hot-title {
+    padding-bottom: 20px;
+    text-align: center;
+}
+.container .hot-title .span-left{
+	display: inline-block;
+    width: 101px;
+    height: 7px;
+    background: url(images/left.png) no-repeat left center;
+    position: relative;
+    top: -1px;
+}
+.container .hot-title .span-center{
+	font-size: 20px;
+    font-weight: 700;
+    margin: 0 23px;
+    color: #323232;
+}
+.container .hot-title .span-right{
+	display: inline-block;
+    width: 101px;
+    height: 7px;
+    background: url(images/right.png) no-repeat left center;
+    position: relative;
+    top: -1px;
+}
+.container .hot-title .point{
+	margin: 0 5px;
+    font-size: 24px;
+    font-weight: 400;
+}
+.container .hot-title .end{
+	font-weight: 400;
+    font-size: 14px;
+}
+.type-tag{
+	background: #fd7045;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -4px;
+    left: 8px;
+    padding: 8px;
+    z-index: 5;
+}
+.type-tag .type-text{
+	font-size: 12px;
+    color: #fff;
+    line-height: 13px;
+}
+.shade{
+	position: absolute;
+    width: 260px;
+    height: 300px;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+.shade .up-shade{
+	display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    background: #000;
+    filter: alpha(Opacity=0);
+    opacity: 0;
+    transition: .6s all ease-in;
+}
+.caption{
+	width: 260px;
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+    padding: 15px;
+    height: 155px;
+    overflow: hidden;
+    text-align: center;
+    z-index: 11;
+    transition: all .3s ease-in-out;
+}
+.caption .cap-span {
+	font-size: 16px;
+    color: #323232;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+.caption .num {
+	display: block;
+    font-weight: 700;
+    font-size: 22px;
+    color: #ff5e2d;
+} 
+.caption .num .small,.caption .num .qi {
+    font-size: 13px;
+}
+.caption .check{
+    display: block;
+    width: 190px;
+    height: 34px;
+    background: #fd7045;
+    color: #fff;
+    text-align: center;
+    line-height: 34px;
+    font-size: 14px;
+    margin: 25px auto 0;
+    z-index: 1000;
+}
+.caption .check:hover{
+    background: #f36235;
+}
+.es-row:hover .up-shade{
+    filter: alpha(Opacity=50);
+    opacity: .5;
+}
+.es-row:hover .caption{
+	bottom: 10px;
+}
+.es-row:hover .cap-span {
+    bottom: 10px;
+}
+.es-row:hover .caption span {
+    color: #fff;
+}
+.link-box .p_link{
+	font-weight: 700;
+    font-size: 20px;
+    color: #323232;
+    margin-top: 20px;
+}
+.p_link .wall{
+	font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    top: -2px;
+}
+.bank_list {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.bank_list li {
+    width: 165px;
+    float: left;
+    list-style: none;
+    text-align: center;
+}
+
+.bank_list li .logo_bank {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.bank_list li .logo_bank a {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: .3s all ease;
+    opacity: 1;
+}
+.copyright {
+	margin-top: 20px;
+    background: #323232;
+    height: 110px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.footer {
+    margin: 0px auto;
+}
+
+.footer_nav {
+    color: #b3b5ba;
+    font-family: Arial,'微软雅黑',sans-serif;
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+.footer_nav p {
+    margin-bottom: 14px;
+}
+
+.footer_nav a {
+    color: #b3b5ba;
+    text-decoration: none;
+}
+
+.footer_nav .divider {
+    margin: 0 10px;
+    color: #5a606e;
+}
+
+.footer_contact {
+    color: #b3b5ba;
+    width: 450px;
+}
+
+.footer_contact .f_contact_time {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #d0d0d0;
+}
+
+.footer_contact .f_contact_time span {
+    font-size: 12px;
+}
+.footer_contact .f_contact_content {
+    overflow: hidden;
+    padding-top: 5px;
+}
+.footer_contact .f_contact_content .f_cc_left, .footer_contact .f_contact_content .f_cc_mid, .footer_contact .f_contact_content .f_cc_right {
+    height: 44px;
+    float: left;
+}
+.footer_contact .f_contact_content .f_cc_item {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 5px;
+    color: #8d8d8d;
+}
+
+/*保险中心*/
+#rightDiv{
+	background: #fff;
+	padding-bottom: 10px;
+	border-radius: 3px;
+	border: 1px solid #eef;
+}
+.insu-wide-list{
+	list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.insu-wide-list li:hover{
+	border-color: #5ebbbc;
+}
+.insu-item{
+	border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.insu-picture-link{
+	float: left;
+}
+.insu-picture{
+	width: 230px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.insu-body{
+	margin: 15px 15px 0px 245px;
+}
+.insu-about{
+	text-align: justify;
+}
+.insu-footer{
+	margin-top: 6px;
+}
+.insu-metas{
+	float: right;
+}
+.insu-wide-list .divider {
+    width: 1px;
+    border-left: 1px solid #ccc;
+    margin: 0 5px;
+}
