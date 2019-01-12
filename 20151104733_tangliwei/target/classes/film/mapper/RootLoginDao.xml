@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="film.mapper.RootLoginDao">
+
+		<select id="getRootLoginByBean"
+		parameterType="Root"
+		resultType="Root">
+		
+		select rid as rid,
+		root as root,
+		password as password
+		from root
+		where  1=1 
+		<if test=" root!=null and root!='' ">
+			and root  = #{root}
+			</if>
+		</select>
+	
+</mapper>
