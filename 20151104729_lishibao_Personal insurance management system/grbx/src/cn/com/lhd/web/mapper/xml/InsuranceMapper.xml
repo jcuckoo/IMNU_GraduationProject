@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IInsuranceMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="insuranceResultMap" type="cn.com.lhd.web.entity.Insurance" autoMapping="true">
+    	<association property="insuranceType" column="type_id" select="cn.com.lhd.web.mapper.IInsuranceTypeMapper.loadById"/>
+    	<association property="company" column="company_id" select="cn.com.lhd.web.mapper.ICompanyMapper.loadById"/>
+    </resultMap>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectInsuranceSql">
+        <where>
+            <choose>
+                <when test="insurance==null"></when>
+                <otherwise>
+                    <if test="insurance.id != null">AND id = #{insurance.id}</if>
+                    <if test="insurance.number != null and insurance.number != ''">AND number like CONCAT('%', #{insurance.number}, '%')</if>
+                    <if test="insurance.title != null and insurance.title != ''">AND title like CONCAT('%', #{insurance.title}, '%')</if>
+                    <if test="insurance.insuranceType != null and insurance.insuranceType.id != null">AND type_id = #{insurance.insuranceType.id}</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="insuranceResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_insurance
+        <include refid="selectInsuranceSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_insurance
+        <include refid="selectInsuranceSql"/>
+    </select>
+
+    <select id="loadById" resultMap="insuranceResultMap">
+        SELECT * FROM tb_insurance WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="insurance.id" useGeneratedKeys="true">
+        INSERT INTO tb_insurance(number, title, summary, create_time, type_id, company_id, money, groom, due_time, content, cover_img)
+		VALUES(#{insurance.number}, #{insurance.title}, #{insurance.summary}, now(), #{insurance.insuranceType.id}, #{insurance.company.id},
+			#{insurance.money}, #{insurance.groom}, #{insurance.dueTime}, #{insurance.content}, #{insurance.coverImg})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_insurance
+        <set>
+            <if test="insurance.title != null and insurance.title != ''">title = #{insurance.title},</if>
+            <if test="insurance.company != null and insurance.company.id != null">company_id = #{insurance.company.id},</if>
+            <if test="insurance.insuranceType != null and insurance.insuranceType.id != null">type_id = #{insurance.insuranceType.id},</if>
+            <if test="insurance.money != null">money = #{insurance.money},</if>
+            <if test="insurance.summary != null and insurance.summary != ''">summary = #{insurance.summary},</if>
+            <if test="insurance.content != null and insurance.content != ''">content = #{insurance.content},</if>
+            <if test="insurance.groom != null">groom = #{insurance.groom},</if>
+            <if test="insurance.dueTime != null">due_time = #{insurance.dueTime},</if>
+        </set>
+        WHERE id = #{insurance.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_insurance WHERE id = #{id}
+    </delete>
+
+</mapper>

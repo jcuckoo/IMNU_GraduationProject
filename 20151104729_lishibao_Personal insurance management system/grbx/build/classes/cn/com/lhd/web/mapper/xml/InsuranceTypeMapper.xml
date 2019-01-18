@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IInsuranceTypeMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="insuranceTypeResultMap" type="cn.com.lhd.web.entity.InsuranceType" autoMapping="true"/>
+    
+    <sql id="selectInsuranceTypeSql">
+        <where>
+            <choose>
+                <when test="insuranceType==null"></when>
+                <otherwise>
+                    <if test="insuranceType.name != null and insuranceType.name != ''">AND name like CONCAT('%', #{insuranceType.name}, '%')</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="insuranceTypeResultMap">
+        SELECT * FROM tb_insuranceType
+        <include refid="selectInsuranceTypeSql"/>
+    </select>
+    
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(*) FROM tb_insuranceType
+        <include refid="selectInsuranceTypeSql"/>
+    </select>
+
+    <select id="loadById" resultMap="insuranceTypeResultMap">
+        SELECT * FROM tb_insuranceType WHERE id = #{id}
+    </select>
+    
+    <insert id="insert" keyProperty="insuranceType.id" useGeneratedKeys="true">
+        INSERT INTO tb_insuranceType(name, create_time)
+		VALUES(#{insuranceType.name}, now())
+    </insert>
+
+    <update id="update">
+        UPDATE tb_insuranceType
+        <set>
+            <if test="insuranceType.name != null and insuranceType.name != ''">name = #{insuranceType.name},</if>
+        </set>
+        WHERE id = #{insuranceType.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_insuranceType WHERE id = #{id}
+    </delete>
+
+</mapper>

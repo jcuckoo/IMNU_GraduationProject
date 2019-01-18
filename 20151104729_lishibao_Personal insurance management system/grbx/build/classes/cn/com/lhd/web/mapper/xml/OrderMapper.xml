@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IOrderMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="orderResultMap" type="cn.com.lhd.web.entity.Order" autoMapping="true">
+    	<association property="user" column="user_id" select="cn.com.lhd.web.mapper.IUserMapper.loadById"/>
+    	<association property="insurance" column="insurance_id" select="cn.com.lhd.web.mapper.IInsuranceMapper.loadById"/>
+    </resultMap>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectOrderSql">
+        <where>
+            <choose>
+                <when test="order==null"></when>
+                <otherwise>
+                    <if test="order.id != null">AND id = #{order.id}</if>
+                    <if test="order.number != null and order.number != ''">AND number like CONCAT('%', #{order.number}, '%')</if>
+                    <if test="order.userName != null and order.userName != ''">AND user_name like CONCAT('%', #{order.userName}, '%')</if>
+                    <if test="order.insuranceName != null and order.insuranceName != ''">AND insurance_name like CONCAT('%', #{order.insuranceName}, '%')</if>
+                    <if test="order.user != null and order.user.id != null">AND user_id = #{order.user.id}</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="orderResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_order
+        <include refid="selectOrderSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_order
+        <include refid="selectOrderSql"/>
+    </select>
+
+    <select id="loadById" resultMap="orderResultMap">
+        SELECT * FROM tb_order WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="order.id" useGeneratedKeys="true">
+        INSERT INTO tb_order(number, create_time, user_name, user_id, insurance_name, insurance_id, money, state, begin_time, end_time)
+		VALUES(#{order.number}, now(), #{order.userName}, #{order.user.id}, #{order.insuranceName}, #{order.insurance.id},
+			#{order.money}, 0, #{order.beginTime}, #{order.endTime})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_order
+        <set>
+            <if test="order.beginTime != null">begin_time = #{order.beginTime},</if>
+            <if test="order.endTime != null">end_time = #{order.endTime},</if>
+            <if test="order.state != null">state = #{order.state},</if>
+        </set>
+        WHERE id = #{order.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_order WHERE id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.ICompanyMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="companyResultMap" type="cn.com.lhd.web.entity.Company" autoMapping="true"/>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectCompanySql">
+        <where>
+            <choose>
+                <when test="company==null"></when>
+                <otherwise>
+                    <if test="company.id != null">AND id = #{company.id}</if>
+                    <if test="company.number != null and company.number != ''">AND number like CONCAT('%', #{company.number}, '%')</if>
+                    <if test="company.name != null and company.name != ''">AND name like CONCAT('%', #{company.name}, '%')</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="companyResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_company
+        <include refid="selectCompanySql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_company
+        <include refid="selectCompanySql"/>
+    </select>
+
+    <select id="loadById" resultMap="companyResultMap">
+        SELECT * FROM tb_company WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="company.id" useGeneratedKeys="true">
+        INSERT INTO tb_company(name, mobile, address, create_time, creator, remark, number)
+		VALUES(#{company.name}, #{company.mobile}, #{company.address}, now(), #{company.creator}, #{company.remark}, #{company.number})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_company
+        <set>
+        	<if test="company.number != null and company.number != ''">number = #{company.number},</if>
+            <if test="company.name != null and company.name != ''">name = #{company.name},</if>
+            <if test="company.creator != null and company.creator != ''">creator = #{company.creator},</if>
+            <if test="company.mobile != null and company.mobile != ''">mobile = #{company.mobile},</if>
+            <if test="company.address != null and company.address != ''">address = #{company.address},</if>
+            <if test="company.remark != null and company.remark != ''">remark = #{company.remark},</if>
+        </set>
+        WHERE id = #{company.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_company WHERE id = #{id}
+    </delete>
+
+</mapper>
