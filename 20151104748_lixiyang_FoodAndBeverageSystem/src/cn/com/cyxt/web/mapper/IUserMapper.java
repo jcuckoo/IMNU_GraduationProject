@@ -1,4 +1,4 @@
-package cn.com.cyxt.web.shitu;
+package cn.com.cyxt.web.mapper;
 
 public interface IUserMapper {
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IMenuItemMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="menuItemResultMap" type="cn.com.lhd.web.entity.MenuItem" autoMapping="true"/>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectMenuItemSql">
+        <where>
+            <choose>
+                <when test="menuItem==null"></when>
+                <otherwise>
+                    <if test="menuItem.id != null">AND id = #{menuItem.id}</if>
+                    <if test="menuItem.menuName != null and menuItem.menuName != ''">AND menu_name like CONCAT('%',#{menuItem.menuName},'%')</if>
+                    <if test="menuItem.userId != null">AND user_id = #{menuItem.userId}</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="menuItemResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_menuItem
+        <include refid="selectMenuItemSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_menuItem
+        <include refid="selectMenuItemSql"/>
+    </select>
+
+    <select id="loadById" resultMap="menuItemResultMap">
+        SELECT * FROM tb_menuItem WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="menuItem.id" useGeneratedKeys="true">
+        INSERT INTO tb_menuItem(menu_id, menu_name, create_time, user_id, user_name, menu_price, state)
+        VALUES(#{menuItem.menuId}, #{menuItem.menuName}, now(), #{menuItem.userId}, #{menuItem.userName}, #{menuItem.menuPrice}, 0)
+    </insert>
+
+    <update id="update">
+        UPDATE tb_menuItem
+        <set>
+            <if test="menuItem.state != null">state = #{menuItem.state},</if>
+            <if test="menuItem.remark != null and menuItem.remark != ''">remark = #{menuItem.remark},</if>
+        </set>
+        WHERE id = #{menuItem.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_menuItem WHERE id = #{id}
+    </delete>
+    
+</mapper>

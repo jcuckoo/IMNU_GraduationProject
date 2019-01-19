@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IMenuMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="menuResultMap" type="cn.com.lhd.web.entity.Menu" autoMapping="true">
+    	<association property="menuType" column="type_id" select="cn.com.lhd.web.mapper.IMenuTypeMapper.loadById"/>
+    </resultMap>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectMenuSql">
+        <where>
+            <choose>
+                <when test="menu==null"></when>
+                <otherwise>
+                    <if test="menu.id != null">AND id = #{menu.id}</if>
+                    <if test="menu.name != null and menu.name != ''">AND name like CONCAT('%',#{menu.name},'%')</if>
+                    <if test="menu.menuType != null and menu.menuType.id != null">AND type_id = #{menu.menuType.id}</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="menuResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_menu
+        <include refid="selectMenuSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_menu
+        <include refid="selectMenuSql"/>
+    </select>
+
+    <select id="loadById" resultMap="menuResultMap">
+        SELECT * FROM tb_menu WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="menu.id" useGeneratedKeys="true">
+        INSERT INTO tb_menu(id, name, create_time, content, price, hit_count, buy_count, score, groom, cover_img, type_id)
+        VALUES(null, #{menu.name}, now(), #{menu.content}, #{menu.price}, 0, 0, #{menu.score}, #{menu.groom}, #{menu.coverImg}, #{menu.menuType.id})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_menu
+        <set>
+            <if test="menu.name != null and menu.name != ''">name = #{menu.name},</if>
+            <if test="menu.content != null and menu.content != ''">content = #{menu.content},</if>
+            <if test="menu.price != null">price = #{menu.price},</if>
+            <if test="menu.hitCount != null">hit_count = #{menu.hitCount},</if>
+            <if test="menu.buyCount != null">buy_count = #{menu.buyCount},</if>
+            <if test="menu.score != null">score = #{menu.score},</if>
+            <if test="menu.groom != null">groom = #{menu.groom},</if>
+            <if test="menu.coverImg != null and menu.coverImg != ''">cover_img = #{menu.coverImg},</if>
+            <if test="menu.menuType != null and menu.menuType.id != ''">type_id = #{menu.menuType.id},</if>
+        </set>
+        WHERE id = #{menu.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_menu WHERE id = #{id}
+    </delete>
+    
+</mapper>
