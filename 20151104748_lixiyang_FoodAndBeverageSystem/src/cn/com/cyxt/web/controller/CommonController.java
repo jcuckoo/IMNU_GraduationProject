@@ -2,6 +2,7 @@ package cn.com.cyxt.web.controller;
 
 import org.apache.shiro.SecurityUtils;
 
+import cn.com.cyxt.web.entity.User;
 import cn.com.lhd.core.utils.SysProperties;
 
 /**

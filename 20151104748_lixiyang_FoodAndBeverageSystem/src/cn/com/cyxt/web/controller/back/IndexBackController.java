@@ -18,21 +18,14 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import cn.com.cyxt.web.controller.CommonController;
 import cn.com.lhd.core.IPage;
 import cn.com.lhd.core.ISort;
 import cn.com.lhd.core.JsonViewData;
 import cn.com.lhd.core.ResultCode;
 import cn.com.lhd.core.page.SimplePage;
 import cn.com.lhd.core.sort.Sorter;
-import cn.com.lhd.web.controller.CommonController;
-import cn.com.lhd.web.entity.Authority;
-import cn.com.lhd.web.entity.Menu;
-import cn.com.lhd.web.entity.MenuType;
-import cn.com.lhd.web.entity.User;
-import cn.com.lhd.web.service.IAuthorityService;
-import cn.com.lhd.web.service.IMenuService;
-import cn.com.lhd.web.service.IMenuTypeService;
-import cn.com.lhd.web.service.IRoleAuthorityService;
+
 
 /**
  * 

@@ -20,6 +20,7 @@ import com.google.common.collect.Sets;
 
 import cn.com.cyxt.web.controller.CommonController;
 import cn.com.cyxt.web.entity.Role;
+import cn.com.cyxt.web.entity.User;
 import cn.com.cyxt.web.service.IUserService;
 import cn.com.lhd.core.IPage;
 import cn.com.lhd.core.ISort;

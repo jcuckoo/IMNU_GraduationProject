@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import cn.com.cyxt.web.controller.CommonController;
 import cn.com.lhd.core.JsonViewData;
 import cn.com.lhd.core.ResultCode;
 import cn.com.lhd.core.utils.BlankUtil;
