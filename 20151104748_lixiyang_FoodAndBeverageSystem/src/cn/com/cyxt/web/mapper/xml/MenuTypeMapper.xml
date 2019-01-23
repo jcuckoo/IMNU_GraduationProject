@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IMenuTypeMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="menuTypeResultMap" type="cn.com.lhd.web.entity.MenuType" autoMapping="true"/>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectMenuTypeSql">
+        <where>
+            <choose>
+                <when test="menuType==null"></when>
+                <otherwise>
+                    <if test="menuType.id != null">AND id = #{menuType.id}</if>
+                    <if test="menuType.name != null and menuType.name != ''">AND name like CONCAT('%',#{menuType.name},'%')</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="menuTypeResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_menuType
+        <include refid="selectMenuTypeSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_menuType
+        <include refid="selectMenuTypeSql"/>
+    </select>
+
+    <select id="loadById" resultMap="menuTypeResultMap">
+        SELECT * FROM tb_menuType WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="menuType.id" useGeneratedKeys="true">
+        INSERT INTO tb_menuType(id, name, create_time, remark)
+        VALUES(null, #{menuType.name}, now(), #{menuType.remark})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_menuType
+        <set>
+            <if test="menuType.name != null and menuType.name != ''">name = #{menuType.name},</if>
+            <if test="menuType.remark != null and menuType.remark != ''">remark = #{menuType.remark},</if>
+        </set>
+        WHERE id = #{menuType.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_menuType WHERE id = #{id}
+    </delete>
+    
+    <select id="loadWithMenuCount" resultMap="menuTypeResultMap">
+    	SELECT mt.id, mt.name, COUNT(m.id) AS menuCount FROM tb_menuType mt LEFT JOIN tb_menu m ON mt.id = m.type_id GROUP BY mt.id ORDER BY mt.create_time ASC
+    </select>
+
+</mapper>

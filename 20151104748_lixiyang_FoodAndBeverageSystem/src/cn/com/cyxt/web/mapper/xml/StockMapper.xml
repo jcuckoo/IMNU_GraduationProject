@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IStockMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="stockResultMap" type="cn.com.lhd.web.entity.Stock" autoMapping="true"/>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectStockSql">
+        <where>
+            <choose>
+                <when test="stock==null"></when>
+                <otherwise>
+                    <if test="stock.id != null">AND id = #{stock.id}</if>
+                    <if test="stock.productNo != null and stock.productNo != ''">AND product_no like CONCAT('%',#{stock.productNo},'%')</if>
+                    <if test="stock.productName != null and stock.productName != ''">AND product_name like CONCAT('%',#{stock.productName},'%')</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="stockResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_stock
+        <include refid="selectStockSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_stock
+        <include refid="selectStockSql"/>
+    </select>
+
+    <select id="loadById" resultMap="stockResultMap">
+        SELECT * FROM tb_stock WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="stock.id" useGeneratedKeys="true">
+        INSERT INTO tb_stock(id, product_no, product_name, create_time, stock_num)
+        VALUES(null, #{stock.productNo}, #{stock.productName}, now(), #{stock.stockNum})
+    </insert>
+    
+    <update id="update">
+    	UPDATE tb_stock
+    	<set>
+    		<if test="stock.productNo != null and stock.productNo != ''">product_no = #{stock.productNo},</if>
+    		<if test="stock.productName != null and stock.productName != ''">product_name = #{stock.productName},</if>
+    		<if test="stock.stockNum != null">stock_num = #{stock.stockNum},</if>
+    		update_time = now(),
+    	</set>
+    	WHERE id = #{stock.id}
+    </update>
+
+    <delete id="delete">
+    	DELETE FROM tb_stock WHERE id = #{id}
+    </delete>
+    
+</mapper>
