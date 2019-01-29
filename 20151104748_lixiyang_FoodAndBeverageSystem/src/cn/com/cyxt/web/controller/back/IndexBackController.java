@@ -19,6 +19,9 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 import cn.com.cyxt.web.controller.CommonController;
+import cn.com.cyxt.web.entity.Authority;
+import cn.com.cyxt.web.entity.Menu;
+import cn.com.cyxt.web.entity.User;
 import cn.com.lhd.core.IPage;
 import cn.com.lhd.core.ISort;
 import cn.com.lhd.core.JsonViewData;
