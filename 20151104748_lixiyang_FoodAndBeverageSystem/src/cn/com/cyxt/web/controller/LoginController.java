@@ -20,6 +20,7 @@ import com.google.common.collect.Sets;
 
 import cn.com.cyxt.web.entity.Role;
 import cn.com.cyxt.web.entity.User;
+import cn.com.cyxt.web.service.IRoleService;
 import cn.com.cyxt.web.service.IUserService;
 import cn.com.lhd.core.ISort;
 import cn.com.lhd.core.JsonViewData;
