@@ -17,6 +17,7 @@ import com.google.common.collect.Sets;
 
 import cn.com.cyxt.web.controller.CommonController;
 import cn.com.cyxt.web.entity.Stock;
+import cn.com.cyxt.web.service.IStockService;
 import cn.com.lhd.core.IPage;
 import cn.com.lhd.core.ISort;
 import cn.com.lhd.core.JsonViewData;
