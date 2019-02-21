@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IAuthorityMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="authorityResultMap" type="cn.com.lhd.web.entity.Authority" autoMapping="true"/>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="commonIdsSql">
+        <foreach collection="ids" open="WHERE id IN(" item="id" separator="," close=")">#{id}</foreach>
+    </sql>
+
+    <sql id="selectAuthoritySql">
+        <where>
+            <choose>
+                <when test="authority == null"></when>
+                <otherwise>
+                    <if test="authority.id != null">AND id = #{authority.id}</if>
+                    <if test="authority.name != null and authority.name != ''">AND name like CONCAT('%',#{authority.name},'%')</if>
+                    <if test="authority.serialNumber != null">AND serial_number = #{authority.serialNumber}</if>
+                    <if test="authority.menuHref != null and authority.menuHref != ''">AND menu_href = #{authority.menuHref}</if>
+                    <if test="authority.parentId != null and authority.parentId != ''">AND parent_id = #{authority.parentId}</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="authorityResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_authority
+        <include refid="selectAuthoritySql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_authority
+        <include refid="selectAuthoritySql"/>
+    </select>
+
+    <select id="loadById" resultMap="authorityResultMap">
+    	SELECT * FROM tb_authority
+    	WHERE id = #{id}
+    </select>
+
+</mapper>

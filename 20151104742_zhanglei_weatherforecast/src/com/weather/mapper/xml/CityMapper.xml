@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.ICityMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="cityResultMap" type="cn.com.lhd.web.entity.City" autoMapping="true"/>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectCitySql">
+        <where>
+            <choose>
+                <when test="city==null"></when>
+                <otherwise>
+                    <if test="city.id != null">AND id = #{city.id}</if>
+                    <if test="city.name != null and city.name != ''">AND name = #{city.name}</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="cityResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_city
+        <include refid="selectCitySql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_city
+        <include refid="selectCitySql"/>
+    </select>
+
+    <select id="loadById" resultMap="cityResultMap">
+        SELECT * FROM tb_city
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="city.id" useGeneratedKeys="true">
+        INSERT INTO tb_city(name, create_time, province)
+		VALUES(#{city.name}, now(), #{city.province})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_city
+        <set>
+            <if test="city.name != null and city.name != ''">name = #{city.name},</if>
+            <if test="city.province != null and city.province != ''">address = #{city.province},</if>
+            update_time = now(),
+        </set>
+        WHERE id = #{city.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_city WHERE id = #{id}
+    </delete>
+    
+    <select id="loadByRand" resultMap="cityResultMap">
+    	SELECT * FROM tb_city ORDER BY RAND() LIMIT 1
+    </select>
+
+</mapper>
