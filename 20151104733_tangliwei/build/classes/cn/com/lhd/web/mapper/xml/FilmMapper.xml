@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IFilmMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="filmResultMap" type="cn.com.lhd.web.entity.Film" autoMapping="true">
+    	<association property="filmType" column="type_id" select="cn.com.lhd.web.mapper.IFilmTypeMapper.loadById"/>
+    	<association property="creator" column="creator_id" select="cn.com.lhd.web.mapper.IUserMapper.loadById"/>
+    </resultMap>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectFilmSql">
+        <where>
+            <choose>
+                <when test="film==null"></when>
+                <otherwise>
+                    <if test="film.id != null">AND id = #{film.id}</if>
+                    <if test="film.title != null and film.title != ''">AND title like CONCAT('%', #{film.title}, '%')</if>
+                    <if test="film.filmType != null and film.filmType.id != null">AND type_id = #{film.filmType.id}</if>
+                    <if test="film.creator != null and film.creator.id != null">AND creator_id = #{film.creator.id}</if>
+                    <if test="film.status != null">AND status = #{film.status}</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="filmResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_film
+        <include refid="selectFilmSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_film
+        <include refid="selectFilmSql"/>
+    </select>
+
+    <select id="loadById" resultMap="filmResultMap">
+        SELECT * FROM tb_film WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="film.id" useGeneratedKeys="true">
+        INSERT INTO tb_film(title, summary, content, create_time, groom, score, click_count, vip, status, video_url, 
+        	cover_img, type_id, creator_id)
+		VALUES(#{film.title}, #{film.summary}, #{film.content}, now(), #{film.groom}, #{film.score}, 0, #{film.vip}, 
+			0, #{film.videoUrl}, #{film.coverImg}, #{film.filmType.id}, #{film.creator.id})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_film
+        <set>
+            <if test="film.title != null and film.title != ''">title = #{film.title},</if>
+            <if test="film.summary != null and film.summary != ''">summary = #{film.summary},</if>
+            <if test="film.content != null and film.content != ''">content = #{film.content},</if>
+            <if test="film.groom != null">groom = #{film.groom},</if>
+            <if test="film.score != null">score = #{film.score},</if>
+            <if test="film.clickCount != null">click_count = #{film.clickCount},</if>
+            <if test="film.vip != null">vip = #{film.vip},</if>
+            <if test="film.status != null">status = #{film.status},</if>
+            <if test="film.videoUrl != null and film.videoUrl != ''">video_url = #{film.videoUrl},</if>
+            <if test="film.coverImg != null and film.coverImg != ''">cover_img = #{film.coverImg},</if>
+            <if test="film.filmType != null and film.filmType.id != null">type_id = #{film.filmType.id},</if>
+        </set>
+        WHERE id = #{film.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_film WHERE id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IUserMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="userResultMap" type="cn.com.lhd.web.entity.User" autoMapping="true">
+    	<association property="userRole" column="role_id" select="cn.com.lhd.web.mapper.IRoleMapper.loadById"/>
+    </resultMap>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectUserSql">
+        <where>
+            <choose>
+                <when test="user==null"></when>
+                <otherwise>
+                    <if test="user.id != null">AND id = #{user.id}</if>
+                    <if test="user.username != null and user.username != ''">AND username = #{user.username}</if>
+                    <if test="user.password != null and user.password != ''">AND password = #{user.password}</if>
+                    <if test="user.truename != null and user.truename != ''">AND truename like CONCAT('%', #{user.truename}, '%')</if>
+                    <if test="user.userRole != null and user.userRole.id != null">AND role_id = #{user.userRole.id}</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="userResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_user
+        <include refid="selectUserSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id)
+        FROM tb_user
+        <include refid="selectUserSql"/>
+    </select>
+
+    <select id="loadById" resultMap="userResultMap">
+        SELECT * FROM tb_user WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="user.id" useGeneratedKeys="true">
+        INSERT INTO tb_user(username, password, truename, create_time, mobile, role_id, user_type)
+		VALUES(#{user.username}, #{user.password}, #{user.truename}, now(), #{user.mobile}, #{user.userRole.id}, #{user.userType})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_user
+        <set>
+            <if test="user.username != null and user.username != ''">username = #{user.username},</if>
+            <if test="user.password != null and user.password != ''">password = #{user.password},</if>
+            <if test="user.mobile != null and user.mobile != ''">mobile = #{user.mobile},</if>
+            <if test="user.userRole != null and user.userRole.id != ''">role_id = #{user.userRole.id},</if>
+            <if test="user.userType != null and user.userType != ''">user_type = #{user.userType},</if>
+            update_time = now(),
+        </set>
+        WHERE id = #{user.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_user WHERE id = #{id}
+    </delete>
+
+</mapper>

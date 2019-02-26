@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IFilmTypeMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="filmTypeResultMap" type="cn.com.lhd.web.entity.FilmType" autoMapping="true"/>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectFilmTypeSql">
+        <where>
+            <choose>
+                <when test="filmType==null"></when>
+                <otherwise>
+                    <if test="filmType.id != null">AND id = #{filmType.id}</if>
+                    <if test="filmType.name != null and filmType.name != ''">AND name like CONCAT('%',#{filmType.name},'%')</if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="filmTypeResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_filmType
+        <include refid="selectFilmTypeSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_filmType
+        <include refid="selectFilmTypeSql"/>
+    </select>
+
+    <select id="loadById" resultMap="filmTypeResultMap">
+        SELECT * FROM tb_filmType WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="filmType.id" useGeneratedKeys="true">
+        INSERT INTO tb_filmType(id, name, create_time, remark)
+        VALUES(null, #{filmType.name}, now(), #{filmType.remark})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_filmType
+        <set>
+            <if test="filmType.name != null and filmType.name != ''">name = #{filmType.name},</if>
+            <if test="filmType.remark != null and filmType.remark != ''">remark = #{filmType.remark},</if>
+        </set>
+        WHERE id = #{filmType.id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM tb_filmType WHERE id = #{id}
+    </delete>
+    
+    <select id="loadWithFilmCount" resultMap="filmTypeResultMap">
+    	SELECT ft.id, ft.name, COUNT(f.id) AS filmCount FROM tb_filmType ft LEFT JOIN tb_film f ON ft.id = f.type_id AND f.status=2 GROUP BY ft.id ORDER BY ft.create_time ASC
+    </select>
+
+</mapper>
