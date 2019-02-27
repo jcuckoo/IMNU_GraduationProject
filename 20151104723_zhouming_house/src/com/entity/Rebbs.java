@@ -1,9 +1,9 @@
 package com.entity;
 
-
+import com.util.VeDate;
 
 public class Rebbs {
-	private String rebbsid ;
+	private String rebbsid = "R" + VeDate.getStringId();
 	private String usersid;
 	private String bbsid;
 	private String contents;

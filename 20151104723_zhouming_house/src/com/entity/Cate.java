@@ -3,10 +3,12 @@ package com.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.util.VeDate;
+
 
 
 public class Cate {
-	private String cateid ;
+	private String cateid = "C" + VeDate.getStringId();
 	private String catename;
 	private String memo;
 	private String addtime;

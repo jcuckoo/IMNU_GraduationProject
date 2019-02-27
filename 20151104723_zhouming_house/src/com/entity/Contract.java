@@ -1,9 +1,9 @@
 package com.entity;
 
-
+import com.util.VeDate;
 
 public class Contract {
-	private String contractid ;
+	private String contractid = "C" + VeDate.getStringId();
 	private String cno;
 	private String usersid;
 	private String houseid;

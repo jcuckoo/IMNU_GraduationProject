@@ -1,9 +1,9 @@
 package com.entity;
 
-
+import com.util.VeDate;
 
 public class House {
-	private String houseid ;
+	private String houseid = "H" + VeDate.getStringId();
 	private String usersid;
 	private String housename;
 	private String image;

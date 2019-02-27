@@ -1,9 +1,9 @@
 package com.entity;
 
-
+import com.util.VeDate;
 
 public class Users {
-	private String usersid ;
+	private String usersid = "U" + VeDate.getStringId();
 	private String username;
 	private String password;
 	private String realname;
