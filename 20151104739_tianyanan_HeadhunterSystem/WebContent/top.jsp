@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" errorPage="/error.jsp"%>
-<%-- <%@ page import="com.easyjob.bean.Applicant"%> --%>
+<%@ page import="com.qst.itoffer.bean.Applicant"%>
 <%
 	// 获得请求的绝对地址
 	String path = request.getContextPath();
@@ -52,7 +52,7 @@
 		<div class="top_logo">
 			<img src="images/main_logo.png" />
 		</div>
-		<div class="top_instr">提供岗前培训的IT职位</div>
+		<div class="top_instr">高端人才招聘网站</div>
 		<div class="top_tel">
 			<img src="images/it-phone.png" />
 		</div>
