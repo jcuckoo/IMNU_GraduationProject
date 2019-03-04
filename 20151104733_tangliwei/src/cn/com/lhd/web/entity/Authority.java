@@ -34,7 +34,7 @@ public class Authority  extends BaseTree<Long, Authority> implements Serializabl
     private String menuImg;
 
     /**
-     * 权限菜单类型，1-菜单项，2-功能项
+     * 权限菜单类型，1~3-菜单项，4~6-功能项
      */
     private String menuType;
     

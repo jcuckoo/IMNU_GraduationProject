@@ -24,7 +24,7 @@
 				<div class="col-md-12" id="rigthContextDiv">
 					<div class="page-header clearfix" style="margin-top: 15px;">
 						<h1 class="pull-left" style="margin-bottom: 4px; font-size: 18px;">
-							<span class="glyphicon glyphicon-home"></span> 首页 &gt; 用户管理
+							<span class="glyphicon glyphicon-home"></span> 用户管理
 						</h1>
 					</div>
 					
@@ -32,7 +32,7 @@
 					<div class="well well-sm">
 						<div class="form-inline">
 							<div class="form-group">
-								<input type="text" id="search_truename" class="form-control" placeholder="用户姓名" value="">
+								<input type="text" id="search_truename" class="form-control" placeholder="输入用户姓名查找" value="">
 							</div>
 							<a type="submit" class="btn btn-primary" onclick="createPageList(1)">搜索</a>
 						</div>

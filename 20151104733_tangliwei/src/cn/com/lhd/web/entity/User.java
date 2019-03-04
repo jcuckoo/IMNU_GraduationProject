@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  *
  * @desc 用户实体类
- *
+ *Serializable是可序列化接口
  */
 public class User implements Serializable {
 

@@ -62,7 +62,7 @@
     </delete>
     
     <select id="loadWithFilmCount" resultMap="filmTypeResultMap">
-    	SELECT ft.id, ft.name, COUNT(f.id) AS filmCount FROM tb_filmType ft LEFT JOIN tb_film f ON ft.id = f.type_id AND f.status=2 GROUP BY ft.id ORDER BY ft.create_time ASC
+    	SELECT ft.id, ft.name, COUNT(f.id) AS filmCount FROM tb_filmType ft LEFT JOIN tb_film f ON ft.id = f.type_id AND f.status=1 GROUP BY ft.id ORDER BY ft.create_time ASC
     </select>
 
 </mapper>

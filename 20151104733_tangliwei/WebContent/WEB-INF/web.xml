@@ -41,10 +41,10 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>
-		<!-- 文件上传大小限制 1024*1024*50=50M -->
+		<!-- 文件上传大小限制 1024*1024*100=100M -->
 		<multipart-config>
-			<max-file-size>52428800</max-file-size>
-			<max-request-size>52428800</max-request-size>
+			<max-file-size>104857600</max-file-size>
+			<max-request-size>104857600</max-request-size>
 			<file-size-threshold>0</file-size-threshold>
 		</multipart-config>
 	</servlet>

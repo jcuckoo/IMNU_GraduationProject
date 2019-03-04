@@ -9,7 +9,7 @@
 			<h4 class="modal-title">电影信息详情</h4>
 		</div>
 		<div class="modal-body">
-			<div id="video1" style="width:480px;height: 240px;margin: 0px auto;">
+			<div id="video" style="width:480px;height: 240px;margin: 0px auto;">
 				<video src="${ctx }${film.videoUrl}"></video>
 			</div>
 		</div>

@@ -105,7 +105,7 @@
 								<div class="col-md-4 controls">
 									<input type="hidden" id="videoUrl" name="videoUrl" value="${film.videoUrl}">
 									<a href="javascript:void(0);" class="btn btn-sm btn-info" data-toggle="modal"
-										data-url="${ctx}/manage/film/uploadPage.do" data-target="#modal">上传视频</a>
+										data-url="${ctx}/manage/film/uploadPage.do" data-target="#modal">点击上传</a>
 								</div>
 							</div>
 							

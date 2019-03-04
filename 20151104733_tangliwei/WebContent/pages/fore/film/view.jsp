@@ -1,30 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/pages/commons/taglibs.jsp" %>
-<link rel="stylesheet" href="${ctx}/static/css/jsmodern.min.css">
-<script type="text/javascript" src="${ctx }/static/js/jsmodern.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<%@ include file="/pages/commons/taglibs.jsp"%>
+
+    <link rel="stylesheet" href="${ctx}/static/depend/videoCT.css">
+
+
+    <script type='text/javascript' src="${ctx}/static/depend/jquery.min.js"></script>
+
+    <script type='text/javascript' src="${ctx}/static/depend/index.js"></script>
+    
+    <script type="text/javascript" src="${ctx }/static/js/jsmodern.min.js"></script>
+    <link rel="stylesheet" href="${ctx}/static/css/jsmodern.min.css">
+
+</head>
+<body>
 <div class="es-box">
-	<div class="div-title">
-		<h3 class="title">
-			<span>${film.title }</span>
-		</h3>
-		<p class="tags">
-			<span class="author"><i class="glyphicon glyphicon-user"></i>&nbsp;${film.creator.truename }</span>
-			<span class="menuType"><i class="glyphicon glyphicon-bookmark"></i>&nbsp;${film.filmType.name }</span>
-			<span class="time"><i class="glyphicon glyphicon-time"></i>&nbsp;<fmt:formatDate value="${film.createTime }" type="date" pattern="yyyy-MM-dd"/></span>
-			<span class="price"><i class="glyphicon glyphicon-registration-mark"></i>&nbsp;${film.vip eq true ? 'VIP' : '免费' }</span>
-			<span class="price"><i class="glyphicon glyphicon-eye-open"></i>&nbsp;${film.clickCount }次</span>
-		</p>
-	</div>
 	<div class="div-context">
 		<div>${film.content }<br></div>
-		<div id="video" style="width:720px;height: 340px;margin: 0 auto;">
-			<video src="${ctx }${film.videoUrl}"></video>
+		<div id="video" style="width:600px;height: 300px;margin: 0px auto;">
+		<input type="hidden" id="shipinUrl" value="${ctx }${film.videoUrl}"/>
+			 <video width="100%" height="100%" id="video1" ></video>
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	$(function(){
-		jsModern.video("#video");
-	});
-</script>
+
+
+</body>
+</html>

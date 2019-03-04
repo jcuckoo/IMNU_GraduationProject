@@ -76,9 +76,9 @@ public class FilmForeController extends CommonController {
 	}
 	
 	/**
-	 * 菜谱详情
 	 * 
-	 * @param id 菜谱Id
+	 * 
+	 * @param id 
 	 * @return
 	 */
 	@RequestMapping(value = "/view/{id}")

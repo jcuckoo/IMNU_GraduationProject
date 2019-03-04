@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,49 +24,23 @@
 			</div>
 			
 			<div class="row row-9-3">
+				<div class="div-title" >
+					<h3 class="title">
+						<span>${film.title }</span>
+					</h3>
+					<p class="tags" >
+						<span class="author"><i class="glyphicon glyphicon-user"></i>&nbsp;${film.creator.truename }</span>
+						<span class="menuType"><i class="glyphicon glyphicon-bookmark"></i>&nbsp;${film.filmType.name }</span>
+						<span class="time"><i class="glyphicon glyphicon-time"></i>&nbsp;<fmt:formatDate value="${film.createTime }" type="date" pattern="yyyy-MM-dd"/></span>
+						<span class="price"><i class="glyphicon glyphicon-registration-mark"></i>&nbsp;${film.vip eq true ? 'VIP' : '免费' }</span>
+						<span class="price"><i class="glyphicon glyphicon-eye-open"></i>&nbsp;${film.clickCount }次</span>
+					</p>
+				</div>
+				
 				<div class="col-sm-9">
 					<jsp:include page="${mainPage }"/>
 				</div>
-				<div class="col-sm-3">
-					<div class="es-box es-tag">
-						<div class="es-box-heading">
-							<h2>电影类别</h2>
-						</div>
-						<div class="es-box-body">
-							<div class="tag-list">
-								<c:forEach var="var" items="${filmTypeCountList }">
-									<a href="${ctx }/film/list.html?filmType.id=${var.id}">${var.name }(${var.filmCount })</a>
-								</c:forEach>
-							</div>
-						</div>
-					</div>
-					<div class="es-box es-rank">
-						<div class="es-box-heading">
-							<h2>热门电影</h2>
-						</div>
-						<div class="es-box-body">
-							<ul class="media-list">
-								<c:forEach var="var" items="${hotFilmList }">
-									<li class="media">
-										<a href="javascript:view('${var.id }');">
-											<div class="es-item">
-												<c:choose>
-													<c:when test="${empty var.coverImg }">
-														<img alt="${var.title }" src="${ctx }/static/images/default.jpg" class="img-responsive thumb pull-left">														
-													</c:when>
-													<c:otherwise>
-														<img alt="${var.title }" src="${ctx }/${var.coverImg}" class="img-responsive thumb pull-left">
-													</c:otherwise>
-												</c:choose>
-												<div class="es-title" style="line-height:32px">${var.title }</div>
-											</div>
-										</a>
-									</li>
-								</c:forEach>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
