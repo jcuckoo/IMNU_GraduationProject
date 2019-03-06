@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.model.*;
+import com.model.PageBean;
 import com.service.*;
 import com.util.*;
 
