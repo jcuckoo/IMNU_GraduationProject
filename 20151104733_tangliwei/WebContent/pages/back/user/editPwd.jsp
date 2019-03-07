@@ -26,7 +26,7 @@
 					</div>
 					<div class="col-md-8 controls">
 						<input type="password" id="password" name="password" class="form-control" 
-							placeholder="新密码">
+							placeholder="原密码">
 					</div>
 					<span class="points">*</span>
 				</div>
