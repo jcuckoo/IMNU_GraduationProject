@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.lhd.web.mapper.IWeatherMapper">
+
+    <!--配置了autoMapping=true,其他的无需配置，将会自动映射-->
+    <resultMap id="weatherResultMap" type="cn.com.lhd.web.entity.Weather" autoMapping="true"/>
+
+    <!--公共sql，其他Mapper可以调用-->
+    <sql id="commonFieldSql">
+        <choose>
+            <when test="fields == null or fields.size() == 0">*</when>
+            <otherwise>
+                <foreach collection="fields" separator="," item="field">${field}</foreach>
+            </otherwise>
+        </choose>
+    </sql>
+
+    <sql id="selectWeatherSql">
+        <where>
+            <choose>
+                <when test="weather==null"></when>
+                <otherwise>
+                    <if test="weather.id != null">AND id = #{weather.id}</if>
+                    <if test="weather.cityName != null and weather.cityName != ''">AND city_name 
+                    	<choose>
+                            <when test="nameLikeModel == true">
+                                like CONCAT('%', #{weather.cityName}, '%')
+                            </when>
+                            <otherwise> = #{weather.cityName}</otherwise>
+                        </choose>
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="loads" resultMap="weatherResultMap">
+        SELECT
+        <include refid="commonFieldSql"/>
+        FROM tb_weather
+        <include refid="selectWeatherSql"/>
+    </select>
+
+    <select id="loadCount" resultType="int">
+        SELECT COUNT(id) FROM tb_weather
+        <include refid="selectWeatherSql"/>
+    </select>
+
+    <select id="loadById" resultMap="weatherResultMap">
+        SELECT * FROM tb_weather WHERE id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="weather.id" useGeneratedKeys="true">
+        INSERT INTO tb_weather(city_name, date, tmp_max, tmp_min, cond_txt_d, cond_txt_n, wind_dir, wind_sc, hum, pcpn, vis, state, create_time)
+		VALUES(#{weather.cityName}, #{weather.date}, #{weather.tmpMax}, #{weather.tmpMin}, #{weather.condTxtD}, #{weather.condTxtN}, 
+			#{weather.windDir}, #{weather.windSc}, #{weather.hum}, #{weather.pcpn}, #{weather.vis}, #{weather.state}, now())
+    </insert>
+    
+    <delete id="delete">
+    	DELETE FROM tb_weather WHERE id = #{id}
+    </delete>
+    
+    <delete id="deleteAll">
+    	TRUNCATE TABLE tb_weather
+    </delete>
+
+</mapper>
