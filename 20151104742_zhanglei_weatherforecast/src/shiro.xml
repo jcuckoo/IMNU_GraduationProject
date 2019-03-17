@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 自定义Realm -->
+	<bean id="myRealm" class="cn.com.lhd.web.realm.MyRealm"/>  
+	
+	<!-- Shiro安全管理器(使用Shiro的核心配置) -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
+  	  <!-- 注入自定义的Realm -->
+  	  <property name="realm" ref="myRealm"/>  
+	</bean>  
+	
+	<!-- Shiro过滤器(id的值要和web.xml中的Shiro配置的名称一致) -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+	    <!-- Shiro的核心安全接口,这个属性是必须的 -->  
+	    <property name="securityManager" ref="securityManager"/>
+	    <!-- 身份认证失败，则跳转到登录页面的配置 -->  
+	    <property name="loginUrl" value="/index.html"/> 
+	    <!-- 权限认证失败，则跳转到指定页面 -->
+		<property name="unauthorizedUrl" value="/page/commons/unauthorized.jsp"/>
+	    <!-- Shiro连接约束配置,即过滤链的定义 -->  
+	    <property name="filterChainDefinitions">  
+	        <value>
+	        	<!-- 过滤静态资源 -->
+	        	/static/**=anon
+				<!-- 请求 logout地址，shiro去清除session -->
+                /logout=logout
+				<!-- 表示该路径下的资源的请求的url需要身份认证通过后方可访问 -->
+				/manage/**=authc
+	        </value>  
+	    </property>
+	</bean>  
+	
+	<!-- 保证实现了Shiro内部lifecycle(生命周期)函数的bean执行 -->  
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>  
+	
+	<!-- 开启Shiro注解 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>  
+  		<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
+  	  <property name="securityManager" ref="securityManager"/>  
+    </bean>
+
+</beans>
