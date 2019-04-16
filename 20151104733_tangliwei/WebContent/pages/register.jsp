@@ -27,7 +27,7 @@
 						<label class="control-label required" for="username">用户名</label>
 						<div class="controls">
 							<input type="text" id="username" name="username" required="required" class="form-control" 
-								data-url="${ctx }/check/username.do?username=" placeholder="登录账号，英文，数字均可，建议使用英文，如nmg123">
+								data-url="${ctx }/check/username.do?username=" placeholder="登录账号，英文，数字均可，建议使用英文，如lhd123456">
 							<p class="help-block"></p>
 						</div>
 					</div>

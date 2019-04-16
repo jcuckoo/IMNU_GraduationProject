@@ -8,4 +8,6 @@
 %>
 <c:set var="ctx" value="<%=path%>" />
 <c:set var="contextPath" value="<%=basePath%>" />
-
+<c:set var="hostName" value="127.0.0.1" />
+<c:set var="hostPort" value="8080" />
+<c:set var="random" value="1.1.5" />

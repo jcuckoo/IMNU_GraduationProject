@@ -9,7 +9,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
  */
 public class CryptographyUtil {
 
-public static final String SALT = "ttt"; // 加密盐
+public static final String SALT = "luohaidian"; // 加密盐
 	
 	/**
 	 * Md5加密

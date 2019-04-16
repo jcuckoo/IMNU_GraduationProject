@@ -37,11 +37,11 @@ public class FileBackController extends CommonController {
 			if (Objects.isNull(file)) {
 				return setJsonViewData(ResultCode.PARAM_ERROR, "请提供需要上传的文件！！！");
 			}
-			String originalFileName = file.getOriginalFilename();//得到文件上传时的名字
+			String originalFileName = file.getOriginalFilename();
 			String ext = originalFileName.substring(originalFileName.indexOf("."), originalFileName.length());
 			String newFileName = BlankUtil.randomUUID() + ext;
 	        // 获取文件上传的真实路径
-	        String rootPath = httpRequest.getSession().getServletContext().getRealPath("");//是获取的的tomcat的路径，部署项目后相当于项目的路径。
+	        String rootPath = httpRequest.getSession().getServletContext().getRealPath("");
 	        String path = "/video/" + DateUtil.formatCurrentDate("yyyyMMdd");
 	        File destFile = new File(rootPath + path);
 	        if (!destFile.exists()) {

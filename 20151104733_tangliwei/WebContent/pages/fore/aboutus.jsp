@@ -32,12 +32,12 @@
 						<dd style="margin:0px 0px 28px;padding:0px 0px 0px 27px;color:#60686B;">更好，更快，更强，不断完善和提供更多优秀影片。</dd>
 						<dt style="margin:0px;padding:0px 0px 0px 27px;color:#303538;;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:-85px -192px;background-repeat:no-repeat;">滨海影视网开发的背景？</dt>
 						<dd style="margin:0px 0px 28px;padding:0px 0px 0px 27px;color:#60686B;">随着移动互联网的快速发展，网上看片已经成为一种潮流，为了让更多的用户观看到更多的优秀影片，我们将利用互联网来服务于大众。</dd>
-						<dt style="margin:0px;padding:0px 0px 0px 27px;color:#303538;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:-85px -192px;background-repeat:no-repeat; color: red;">联系我们</dt>
-						<dd style="margin:0px 0px 28px;padding:0px 0px 0px 27px;color:#60686B;">人工服务电话：12345678910<br />如果有任何技术上或者操作上的问题，请联系管理员解决或在公众号上搜寻解决方法。</dd>
-						<dt style="margin:0px;padding:0px 0px 0px 27px;color:#303538;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:-85px -192px;background-repeat:no-repeat; color: red;">请您留言</dt>
-						<dd style="margin:0px 0px 28px;padding:0px 0px 0px 27px;color:#60686B;">搜索关注微信公众号：内蒙古师范大学<br />留下您宝贵的意见。</dd>
-						<dt style="margin:0px;padding:0px 0px 0px 27px;color:#303538;;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:-85px -192px;background-repeat:no-repeat; color: red;">VIP的获取</dt>
-						<dd style="margin:0px 0px 28px;padding:0px 0px 0px 27px;color:#60686B;">搜索关注微信公众号：内蒙古师范大学</dd>
+						<dt style="margin:0px;padding:0px 0px 0px 27px;color:#303538;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:-85px -192px;background-repeat:no-repeat;">为什么开发滨海影视网？</dt>
+						<dd style="margin:0px 0px 28px;padding:0px 0px 0px 27px;color:#60686B;">更多的用户希望通过互联网实现在线观看电影，用互联网思维改变我们的生活方式。<br />我们将利用互联网技术，来给用户提供更好的服务，改变消费者的看片方式！</dd>
+						<dt style="margin:0px;padding:0px 0px 0px 27px;color:#303538;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:-85px -192px;background-repeat:no-repeat;">滨海影视网在做什么？</dt>
+						<dd style="margin:0px 0px 28px;padding:0px 0px 0px 27px;color:#60686B;">做更多实用的推广，做更好体验的产品，研究更牛的技术，更好的服务于大众！</dd>
+						<dt style="margin:0px;padding:0px 0px 0px 27px;color:#303538;;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:-85px -192px;background-repeat:no-repeat;">滨海影视网的追求是什么？</dt>
+						<dd style="margin:0px 0px 28px;padding:0px 0px 0px 27px;color:#60686B;">更好的服务于广大用户，让他们看得开心。</dd>
 					</dl>
 					
 				</div>

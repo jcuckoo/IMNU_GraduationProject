@@ -28,7 +28,7 @@
 						</h1>
 						<div class="pull-right">
 							<a class="btn btn-primary btn-sm" href="${ctx }/manage/film/edit.do">
-								<span class="glyphicon glyphicon-plus"></span> 上传电影
+								<span class="glyphicon glyphicon-plus"></span> 新增
 							</a>
 						</div>
 					</div>
